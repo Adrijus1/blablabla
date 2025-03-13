@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #c72c41, #280038);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .gallery-container {
+            background-color: rgba(39, 10, 10, 0.75);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            width: 95%;
+            max-width: 1200px;
+            text-align: center;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .image-container {
+            position: relative;
+            margin: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            border: 3px solid #c72c41; /* Frame color that matches the background */
+        }
+
+        .image-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .image-container img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 250px;
+            max-height: 250px;
+            border-radius: 8px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.1);
+        }
+
+        .like-button {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.4);
+            border: none;
+            font-size: 1.3em;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+            line-height: 1;
+            transition: transform 0.2s ease, color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .like-button:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .like-button:active {
+            transform: scale(0.9);
+        }
+
+        .liked {
+            color: rgb(255, 50, 50);
+            animation: likeAnimation 0.5s ease;
+        }
+
+        @keyframes likeAnimation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(1); }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 100, 100, 0.1), transparent);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        h1 {
+            color: #c72c41;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        p.signature {
+            font-size: 0.8em;
+            text-align: right;
+            color: #aaa;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gallery-container">
+        <h1>Image Gallery</h1>
+        <div class="gallery">
+            <div class="image-container">
+                <img src="https://www.backpackadventures.org/wp-content/uploads/2022/04/IMG_20220223_104722.jpg" alt="Image 1">
+                <button class="like-button">♡</button>
+            </div>
+            <div class="image-container">
+                <img src="https://photos.trip.lt/6ffb0d33-5021-48ba-90d7-7b404fba0258/3840x2160?crop=true" alt="Image 2">
+                <button class="like-button">♡</button>
+            </div>
+            <div class="image-container">
+                <img src="https://www.kaunas.lt/wp-content/uploads/sites/13/2016/09/Muzikinis-teatras-10-990x557.jpg" alt="Image 3">
+                <button class="like-button">♡</button>
+            </div>
+            <div class="image-container">
+                <img src="https://m.kauno.diena.lt/sites/default/files/soboras-10.jpg" alt="Image 4">
+                <button class="like-button">♡</button>
+            </div>
+            <div class="image-container">
+                <img src="https://labaspasauli.lt/storage/travel_blog/5641/conversions/italija-vieta-i-kuria-tikrai-noresi-sugrizti-hd.webp" alt="Image 5">
+                <button class="like-button">♡</button>
+            </div>
+            <div class="image-container">
+                <img src="https://www.guliveriokeliones.lt/files/2018-02/8677_large.jpg" alt="Image 6">
+                <button class="like-button">♡</button>
+            </div>
+            <div class="image-container">
+                <img src="https://atostogositalijoje.com/wp-content/uploads/2019/01/a44cb6f6-732f-407f-812b-08421cbe7f16.jpeg" alt="Image 7">
+                <button class="like-button">♡</button>
+            </div>
+            <div class="image-container">
+                <img src="https://viarcanvas.com/storage/gallery-items/November2020/oHRBqQwSJMTEpchWLzoY.jpg" alt="Image 8">
+                <button class="like-button">♡</button>
+            </div>
+        </div>
+        <p class="signature">By Adrijus</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const likeButtons = document.querySelectorAll('.like-button');
+
+            likeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.classList.toggle('liked');
+                    if (this.classList.contains('liked')) {
+                        this.innerHTML = '❤';
+                    } else {
+                        this.innerHTML = '♡';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

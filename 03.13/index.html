@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Generator</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid red;
+            text-align: center;
+        }
+
+        td {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    
+    
+        <label for="rows">Eilutes :</label>
+        <input type="number" id="rows" name="rows"><br><br>
+    
+        <label for="cols">Stulpeliai:</label>
+        <input type="number" id="cols" name="cols"><br><br>
+    
+        <button onclick="generateTable()">Create</button>
+        <button onclick="clearTable()">Clear</button>
+    
+
+    <table id="myTable"></table>
+
+    <script>
+        function generateTable() {
+            const rows = document.getElementById("rows").value;
+            const cols = document.getElementById("cols").value;
+            const table = document.getElementById("myTable");
+
+            // Clear existing table
+            table.innerHTML = "";
+
+            for (let i = 0; i < rows; i++) {
+                let row = table.insertRow();
+                for (let j = 0; j < cols; j++) {
+                    let cell = row.insertCell();
+                    cell.textContent = "labas   "; // Fill cell with text
+                }
+            }
+        }
+
+        function clearTable() {
+            document.getElementById("myTable").innerHTML = "";
+        }
+    </script>
+</body>
+</html>
